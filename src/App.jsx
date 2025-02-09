@@ -2,7 +2,7 @@ import React from 'react';
 import MainContent from './components/MainContent';
 import logo from './assets/images/logo.png';
 
-// comment 
+// comment  continues
 function App() {
   return (
     <>
