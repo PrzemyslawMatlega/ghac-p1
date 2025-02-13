@@ -7,6 +7,8 @@ on:
 jobs: 
     build:
         runs-on: ubuntu-latest
+        outputs:
+           script-file: ${{ steps.publish.outputs.script-file }}
         steps:
             - name: Checkout
               uses: actions/checkout@v4
@@ -20,6 +22,9 @@ jobs:
               run: npm run lint
             - name: Build
               run: npm run build
+            - name: Publish JS file names
+              id: publish
+              run: find dist/assets/*.js -type f -execdir echo 'script-file={}' >> $GITHUB_OUTPUT ';'
             - name: Upload Artifact
               uses: actions/upload-artifact@v3
               with:
